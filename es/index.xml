@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eddú Meléndez blog</title><link>https://eddumelendez-site.github.io/es/</link><description>Eddú Meléndez blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 Mar 2023 21:50:03 -0600</lastBuildDate><atom:link href="https://eddumelendez-site.github.io/es/index.xml" rel="self" type="application/rss+xml"/><item><title>¡Hola Mundo!</title><link>https://eddumelendez-site.github.io/es/posts/hello-world/</link><pubDate>Mon, 20 Mar 2023 21:50:03 -0600</pubDate><guid>https://eddumelendez-site.github.io/es/posts/hello-world/</guid><description>&lt;div class="paragraph">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/</link><description>Eddú Meléndez blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 Mar 2023 21:50:03 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/index.xml" rel="self" type="application/rss+xml"/><item><title>¡Hola Mundo!</title><link>https://eddumelendez.dev/es/posts/hello-world/</link><pubDate>Mon, 20 Mar 2023 21:50:03 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/hello-world/</guid><description>&lt;div class="paragraph">
 &lt;p>¡Hola a todos! Estoy muy emocionado de anunciar que estoy regresando a mi blog después de varios años sin publicar.
 Esta es la tercera vez que inicio un blog, y espero que esta vez sea la definitiva.&lt;/p>
 &lt;/div>
@@ -9,7 +9,7 @@ les resulte útil e interesante.&lt;/p>
 &lt;/div>
 &lt;div class="paragraph">
 &lt;p>¡Gracias por leer y espero verlos pronto en mi blog!&lt;/p>
-&lt;/div></description></item><item><title>About</title><link>https://eddumelendez-site.github.io/es/about/</link><pubDate>Mon, 20 Mar 2023 21:45:12 -0600</pubDate><guid>https://eddumelendez-site.github.io/es/about/</guid><description>&lt;div class="paragraph">
+&lt;/div></description></item><item><title>About</title><link>https://eddumelendez.dev/es/about/</link><pubDate>Mon, 20 Mar 2023 21:45:12 -0600</pubDate><guid>https://eddumelendez.dev/es/about/</guid><description>&lt;div class="paragraph">
 &lt;p>Hola, mi nombre es Eddú (🇯🇵 エドゥ), soy Ingeniero de Software 👨🏽‍💻 y actualmente trabajo en el proyecto &lt;a href="https://testcontainers.com/">Testcontainers&lt;/a> en &lt;a href="https://www.atomicjar.com/">AtomicJar&lt;/a>. Java Champion desde Junio, 2022.&lt;/p>
 &lt;/div>
 &lt;div class="paragraph">
