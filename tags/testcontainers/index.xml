@@ -8,7 +8,9 @@ reducing the necessary configuration when using &lt;a href="https://testcontaine
 &lt;/div>
 &lt;div class="listingblock">
 &lt;div class="content">
-&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/DynamicPropertySourceTest.java[tag=container]&lt;/code>&lt;/pre>
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">@Container // &lt;b class="conum">(1)&lt;/b>
+private static final PostgreSQLContainer&amp;lt;?&amp;gt; postgresContainer = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;) // &lt;b class="conum">(2)&lt;/b>
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;); // &lt;b class="conum">(3)&lt;/b>&lt;/code>&lt;/pre>
 &lt;/div>
 &lt;/div>
 &lt;div class="colist arabic">
@@ -29,7 +31,14 @@ reducing the necessary configuration when using &lt;a href="https://testcontaine
 &lt;/div>
 &lt;div class="listingblock">
 &lt;div class="content">
-&lt;pre class="highlight">&lt;code class="language-sql" data-lang="sql">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/resources/schema.sql[]&lt;/code>&lt;/pre>
+&lt;pre class="highlight">&lt;code class="language-sql" data-lang="sql">CREATE TABLE users (
+id SERIAL,
+username VARCHAR(255) NOT NULL,
+name VARCHAR(255) NOT NULL,
+lastname VARCHAR(255) NOT NULL,
+PRIMARY KEY (id)
+);
+INSERT INTO users (username, name, lastname) VALUES (&amp;#39;eddumelendez&amp;#39;, &amp;#39;Eddú&amp;#39;, &amp;#39;Meléndez&amp;#39;);&lt;/code>&lt;/pre>
 &lt;/div>
 &lt;/div>
 &lt;div class="admonitionblock tip">
@@ -52,7 +61,12 @@ It is recommended to use Liquibase or Flyway to handle database migrations.
 &lt;/div>
 &lt;div class="listingblock">
 &lt;div class="content">
-&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/DynamicPropertySourceTest.java[tag=dynamic-property-source]&lt;/code>&lt;/pre>
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">@DynamicPropertySource
+static void postgresqlProperties(DynamicPropertyRegistry registry) { // &lt;b class="conum">(1)&lt;/b>
+registry.add(&amp;#34;spring.datasource.url&amp;#34;, postgresContainer::getJdbcUrl);
+registry.add(&amp;#34;spring.datasource.username&amp;#34;, postgresContainer::getUsername);
+registry.add(&amp;#34;spring.datasource.password&amp;#34;, postgresContainer::getPassword);
+}&lt;/code>&lt;/pre>
 &lt;/div>
 &lt;/div>
 &lt;div class="colist arabic">
@@ -73,7 +87,10 @@ Spring Boot will automatically map the properties.&lt;/p>
 &lt;/div>
 &lt;div class="listingblock">
 &lt;div class="content">
-&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/ServiceConnectionTest.java[tag=jdbc-service-connection]&lt;/code>&lt;/pre>
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">@Container
+@JdbcServiceConnection // &lt;b class="conum">(1)&lt;/b>
+private static final PostgreSQLContainer&amp;lt;?&amp;gt; postgresContainer = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;)
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;);&lt;/code>&lt;/pre>
 &lt;/div>
 &lt;/div>
 &lt;div class="colist arabic">
