@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testcontainers on Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/tags/testcontainers/</link><description>Eddú Meléndez blog (testcontainers)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 Mar 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/tags/testcontainers/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
+&lt;p>El pasado viernes 24 de Marzo se liberó la versión 3.1.0-M2 de Spring Boot, la cual añade nuevas anotaciones con la
+finalidad de reducir la configuración necesaria cuando usamos &lt;a href="https://testcontainers.com/" target="_blank" rel="noopener">Testcontainers&lt;/a>, resolviendo
+el issue &lt;a href="https://github.com/spring-projects/spring-boot/issues/34658" target="_blank" rel="noopener">spring-projects/spring-boot#34658&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>A continuación, se muestra un ejemplo de cómo utilizar &lt;code>PostgreSQL&lt;/code> en nuestros tests.&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/DynamicPropertySourceTest.java[tag=container]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="colist arabic">
+&lt;ol>
+&lt;li>
+&lt;p>Anotación que en conjunto con &lt;code>@Testcontainers&lt;/code> manejará el ciclo de vida del contenedor.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Declaración de la implementación del container de Testcontainers, en este caso &lt;code>PostgreSQLContainer&lt;/code>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>El archivo &lt;code>schema.sql&lt;/code> será copiado en &lt;code>/docker-entrypoint-initdb.d/&lt;/code> para que se ejecute al iniciar el contenedor.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>El contenido del script &lt;code>schema.sql&lt;/code>, localizado en &lt;code>src/test/resources&lt;/code>, es el siguiente:&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-sql" data-lang="sql">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/resources/schema.sql[]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="admonitionblock tip">
+&lt;table>
+&lt;tbody>&lt;tr>
+&lt;td class="icon">
+&lt;div class="title">Tip&lt;/div>
+&lt;/td>
+&lt;td class="content">
+Es recomendable usar &lt;code>Liquibase&lt;/code> o &lt;code>Flyway&lt;/code> para el manejo de migraciones de la base de datos.
+&lt;/td>
+&lt;/tr>
+&lt;/tbody>&lt;/table>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_antes_de_spring_boot_3_1_0_m2">Antes de Spring Boot 3.1.0-M2:&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Previo al release de este milestone, era necesario hacer el mapeo manualmente de las propiedades de Testcontainers.&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/DynamicPropertySourceTest.java[tag=dynamic-property-source]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="colist arabic">
+&lt;ol>
+&lt;li>
+&lt;p>método estático que ha venido siendo usado para el mapeo correspondiente de properties provenientes de Testcontainers.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_después_de_spring_boot_3_1_0_m2">Después de Spring Boot 3.1.0-M2&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Ahora, haciendo uso de &lt;code>@JdbcServiceConnection&lt;/code>, podemos declarar el contenedor de Testcontainers y Spring Boot se encargará
+de hacer el mapeo de las propiedades automáticamente.&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">Unresolved directive in &amp;lt;stdin&amp;gt; - include::content/posts/spring-boot-3.1-m2-service-connections/src/test/java/com/example/demo/ServiceConnectionTest.java[tag=jdbc-service-connection]&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="colist arabic">
+&lt;ol>
+&lt;li>
+&lt;p>&lt;code>@JdbcServiceConnection&lt;/code> hace el mapeo respectivo de las propiedades de Spring Boot con los valores que provee
+Testcontainers.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Para mayor información, puedes consultar el siguiente
+&lt;a href="https://docs.spring.io/spring-boot/docs/3.1.0-M2/reference/htmlsingle/#howto.testing.testcontainers.service-connections" target="_blank" rel="noopener">enlace&lt;/a>
+y ver cuáles son las anotaciones disponibles.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Hay otros cambios en esta versión; ya no será necesario declarar el &lt;code>testcontainers-bom&lt;/code>, y para actualizar la versión de
+Testcontainers, simplemente debemos actualizar la versión que Spring Boot provee de la siguiente manera:&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-xml" data-lang="xml">&amp;lt;testcontainers.version&amp;gt;1.17.6&amp;lt;/testcontainers.version&amp;gt;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
