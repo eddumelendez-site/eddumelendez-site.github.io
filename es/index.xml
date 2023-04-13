@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/</link><description>Eddú Meléndez blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 Mar 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/</link><description>Eddú Meléndez blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 12 Apr 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/index.xml" rel="self" type="application/rss+xml"/><item><title>Noticias Abril 12, 2023</title><link>https://eddumelendez.dev/es/posts/news-april-12-2023/</link><pubDate>Wed, 12 Apr 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/news-april-12-2023/</guid><description>&lt;div class="paragraph">
+&lt;p>¡Ha sido una semana muy emocionante! Se han realizado muchos releases.Estoy seguro de que encontrarás algo interesante
+para ti.&lt;/p>
+&lt;/div>
+&lt;div class="ulist">
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/GoogleCloudPlatform/cloud-spanner-emulator/releases/tag/v1.5.3" target="_blank" rel="noopener">Cloud Spanner Emulator v1.5.3&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/micronaut-projects/micronaut-test-resources/releases/tag/v2.0.0-M1" target="_blank" rel="noopener">Micronaut Test Resources v2.0.0-M1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/GoogleCloudPlatform/spring-cloud-gcp/releases/tag/v4.1.4" target="_blank" rel="noopener">Spring Cloud GCP 4.1.4&lt;/a> y
+&lt;a href="https://github.com/GoogleCloudPlatform/spring-cloud-gcp/releases/tag/v3.4.8" target="_blank" rel="noopener">3.4.8&lt;/a> liberados&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/quarkusio/quarkus/releases/tag/3.0.0.CR2" target="_blank" rel="noopener">Quarkus 3.0.0.CR2&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.7.0" target="_blank" rel="noopener">Spring Cloud Azure 4.7.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/cli/cli/releases/tag/v2.27.0" target="_blank" rel="noopener">GitHub CLI 2.27.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://twitter.com/brunoborges/status/1644393714410717188" target="_blank" rel="noopener">Microsoft contribuye a OpenTelemetry&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/localstack/localstack/releases/tag/v2.0.1" target="_blank" rel="noopener">LocalStack 2.0.1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/gradle/gradle/releases/tag/v8.1.0-RC4" target="_blank" rel="noopener">Gradle 8.1.0-RC4&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/micrometer-metrics/micrometer/releases/tag/v1.11.0-RC1" target="_blank" rel="noopener">Micrometer 1.11.0-RC1&lt;/a>
+&lt;a href="https://github.com/micrometer-metrics/micrometer/releases/tag/v1.10.6" target="_blank" rel="noopener">1.10.6&lt;/a> y
+&lt;a href="https://github.com/micrometer-metrics/micrometer/releases/tag/v1.9.10" target="_blank" rel="noopener">1.9.10&lt;/a> liberados&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/micrometer-metrics/tracing/releases/tag/v1.1.0-RC1" target="_blank" rel="noopener">Micrometer Tracing 1.1.0-RC1&lt;/a> y
+&lt;a href="https://github.com/micrometer-metrics/tracing/releases/tag/v1.0.4" target="_blank" rel="noopener">1.0.4&lt;/a> liberados&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/microsoft/playwright/releases/tag/v1.32.3" target="_blank" rel="noopener">Playwright 1.32.3&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/mockito/mockito/releases/tag/v5.3.0" target="_blank" rel="noopener">Mockito 5.3.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/GoogleContainerTools/skaffold/releases/tag/v2.3.1" target="_blank" rel="noopener">Skaffold 2.3.1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/kubernetes/kubernetes/releases/tag/v1.27.0" target="_blank" rel="noopener">Kubernetes 1.27.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div></description></item><item><title>Noticias Abril 05, 2023</title><link>https://eddumelendez.dev/es/posts/news-april-05-2023/</link><pubDate>Wed, 05 Apr 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/news-april-05-2023/</guid><description>&lt;div class="paragraph">
+&lt;p>En esta ocasión nos encontramos en el evento de DevNexus en Atlanta, GA. A continuación les compartimos las noticias
+de la semana.&lt;/p>
+&lt;/div>
+&lt;div class="ulist">
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/gradle/gradle/releases/tag/v8.1.0-RC2" target="_blank" rel="noopener">Gradle 8.1 RC2&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/gradle/gradle/releases/tag/v8.1.0-RC3" target="_blank" rel="noopener">Gradle 8.1 RC3&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://groups.google.com/g/jooq-user/c/MX4AKj8Wc-I?pli=1" target="_blank" rel="noopener">jOOQ 3.16.17, 3.17.11, y 3.18.2&lt;/a> liberados&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://localstack.cloud/blog/2023-03-29-announcing-localstack-2.0-general-availability/" target="_blank" rel="noopener">LocalStack 2.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://quarkus.io/blog/quarkus-3-0-0-cr1-released/" target="_blank" rel="noopener">Quarkus 3.0.0.CR1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://spring.io/blog/2023/03/31/spring-cloud-2022-0-2-is-available" target="_blank" rel="noopener">Spring Cloud 2022.0.2&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://blog.jetbrains.com/fleet/2023/03/fleet-preview-update-1-17-rust-debugger-code-folding-improvements-ability-to-rename-workspaces-and-more/" target="_blank" rel="noopener">Fleet Preview Update 1.17&lt;/a>
+liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/micronaut-projects/micronaut-core/releases/tag/v3.8.8" target="_blank" rel="noopener">Micronaut 3.8.8&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://twitter.com/openjdk/status/1641829478396579840" target="_blank" rel="noopener">OpenJDK 21 EA 16&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://twitter.com/openjdk/status/1641829709586612226" target="_blank" rel="noopener">JavaFX EA 10&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/asyncer-io/r2dbc-mysql/releases/tag/r2dbc-mysql-1.0.0" target="_blank" rel="noopener">R2DBC MySQL 1.0.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://twitter.com/kotlin/status/1642841828394254337" target="_blank" rel="noopener">Kotlin 1.8.20&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/releases/tag/v0.75.0" target="_blank" rel="noopener">OpenTelemetry Collector 0.75.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/GoogleContainerTools/skaffold/releases/tag/v1.37.4" target="_blank" rel="noopener">Skaffold 1.37.4&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/openrewrite/rewrite/releases/tag/v7.39.0" target="_blank" rel="noopener">OpenRewrite 7.39.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/microsoft/playwright/releases/tag/v1.32.2" target="_blank" rel="noopener">Playwright 1.32.2&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/jacoco/jacoco/releases/tag/v0.8.9" target="_blank" rel="noopener">JaCoCo 0.8.9&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://blogs.oracle.com/database/post/oracle-database-23c-free" target="_blank" rel="noopener">Oracle Database 23c Free – Developer&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/quarkusio/quarkus/releases/tag/2.16.6.Final" target="_blank" rel="noopener">Quarkus 2.16.6.Final&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://debezium.io/releases/2.1/release-notes" target="_blank" rel="noopener">Debezium 2.1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/testcontainers/testcontainers-java/releases/tag/1.18.0" target="_blank" rel="noopener">Testcontainers 1.18.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/cli/cli/releases/tag/v2.26.1" target="_blank" rel="noopener">GitHub CLI 2.26.1&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div></description></item><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
 &lt;p>El pasado viernes 24 de Marzo se liberó la versión 3.1.0-M2 de Spring Boot, la cual añade nuevas anotaciones con la
 finalidad de reducir la configuración necesaria cuando usamos &lt;a href="https://testcontainers.com/" target="_blank" rel="noopener">Testcontainers&lt;/a>, resolviendo
 el issue &lt;a href="https://github.com/spring-projects/spring-boot/issues/34658" target="_blank" rel="noopener">spring-projects/spring-boot#34658&lt;/a>.&lt;/p>
