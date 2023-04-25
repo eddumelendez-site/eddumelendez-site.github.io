@@ -1,4 +1,87 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testcontainers on Eddú Meléndez blog</title><link>https://eddumelendez.dev/tags/testcontainers/</link><description>Eddú Meléndez blog (testcontainers)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 Mar 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/tags/testcontainers/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testcontainers on Eddú Meléndez blog</title><link>https://eddumelendez.dev/tags/testcontainers/</link><description>Eddú Meléndez blog (testcontainers)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 25 Apr 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/tags/testcontainers/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-RC1: Service Connections</title><link>https://eddumelendez.dev/posts/spring-boot-3-1-rc1-service-connections/</link><pubDate>Tue, 25 Apr 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/posts/spring-boot-3-1-rc1-service-connections/</guid><description>&lt;div class="paragraph">
+&lt;p>Spring Boot 3.1.0-RC1 has been released over the weekend, at
+&lt;a href="https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/" target="_blank" rel="noopener">Spring Boot 3.1.0-M2: Service Connections&lt;/a>
+we mentioned the introduction of new annotations for handling connections to external services. In this version, there
+have been some changes.&lt;/p>
+&lt;/div>
+&lt;div class="olist arabic">
+&lt;ol class="arabic">
+&lt;li>
+&lt;p>A new module called &lt;code>spring-boot-testcontainers&lt;/code> has been added, which creates beans based on Testcontainers
+implementations that can be used in our tests and at development time 👀&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@ServiceConnection&lt;/code> is the only annotation required to be along with &lt;code>@Container&lt;/code> and allow Spring Boot to perform
+bean auto-configuration.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Our test would now look like this:&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">@Container
+@ServiceConnection // &lt;b class="conum">(1)&lt;/b>
+private static final PostgreSQLContainer&amp;lt;?&amp;gt; postgresContainer = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;)
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;);&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="colist arabic">
+&lt;ol>
+&lt;li>
+&lt;p>@ServiceConnection maps the Spring Boot properties with the values provided by Testcontainers.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>But that’s not all, we can now declare &lt;code>PostgreSQLContainer&lt;/code> as &lt;code>@Bean&lt;/code>, along with &lt;code>@ServiceConnection&lt;/code>, and Spring
+Boot will take care of the auto-configuration so the application can be executed. To do this, you can create a
+class with the &lt;code>main&lt;/code> method in &lt;code>src/test/java&lt;/code> and run it.&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">public class TestDemoApplication {
+public static void main(String[] args) {
+SpringApplication.from(DemoApplication::main).with(DemoConfiguration.class).run(args);
+}
+@TestConfiguration(proxyBeanMethods = false)
+static class DemoConfiguration {
+@Bean
+@ServiceConnection
+public PostgreSQLContainer&amp;lt;?&amp;gt; redisContainer() {
+PostgreSQLContainer&amp;lt;?&amp;gt; postgres = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;)
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;);
+return postgres;
+}
+@Bean
+ApplicationRunner runner(JdbcTemplate jdbcTemplate) {
+return args -&amp;gt; {
+jdbcTemplate.queryForList(&amp;#34;SELECT name, lastname FROM users&amp;#34;)
+.forEach(System.out::println);
+};
+}
+}
+}&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>For testing purposes, add the following dependency &lt;code>org.springframework.boot:spring-boot-starter-web&lt;/code> to your &lt;code>pom.xml&lt;/code>
+or &lt;code>build.gradle&lt;/code>. The application will be executed connected to a PostgreSQL database running in a container.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>You can now visit &lt;a href="https://start.spring.io" target="_blank" rel="noopener">Spring Initializr&lt;/a> and generate a project with Spring Boot 3.1.0-RC1.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Also, check the official documentation of
+&lt;a href="https://docs.spring.io/spring-boot/docs/3.1.0-RC1/reference/htmlsingle/#features.testing.testcontainers.service-connections" target="_blank" rel="noopener">Service Connections&lt;/a>
+and
+&lt;a href="https://docs.spring.io/spring-boot/docs/3.1.0-RC1/reference/htmlsingle/#features.testing.testcontainers.at-development-time" target="_blank" rel="noopener">Testcontainers at Development Time&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>By the way, did you know about the existence of the modules provided by Testcontainers? You can check them out at
+&lt;a href="https://testcontainers.com/modules/">module catalog&lt;/a>.&lt;/p>
+&lt;/div></description></item><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
 &lt;p>On Friday, March 24th, Spring Boot 3.1.0-M2 was released, which adds new annotations with the purpose of
 reducing the necessary configuration when using &lt;a href="https://testcontainers.com/" target="_blank" rel="noopener">Testcontainers&lt;/a>, solving the issue
 &lt;a href="https://github.com/spring-projects/spring-boot/issues/34658" target="_blank" rel="noopener">spring-projects/spring-boot#34658&lt;/a>.&lt;/p>

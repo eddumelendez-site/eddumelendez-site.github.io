@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testcontainers on Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/tags/testcontainers/</link><description>Eddú Meléndez blog (testcontainers)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 Mar 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/tags/testcontainers/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>testcontainers on Eddú Meléndez blog</title><link>https://eddumelendez.dev/es/tags/testcontainers/</link><description>Eddú Meléndez blog (testcontainers)</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 25 Apr 2023 08:00:00 -0600</lastBuildDate><atom:link href="https://eddumelendez.dev/es/tags/testcontainers/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring Boot 3.1.0-RC1: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-rc1-service-connections/</link><pubDate>Tue, 25 Apr 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-rc1-service-connections/</guid><description>&lt;div class="paragraph">
+&lt;p>Spring Boot 3.1.0-RC1 ha sido liberado durante el fin de semana, en
+&lt;a href="https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/" target="_blank" rel="noopener">Spring Boot 3.1.0-M2: Service Connections&lt;/a>
+mencionamos la introducción de nuevas anotaciones para el manejo de conexiones a servicios externos. En esta versión han
+habido algunos cambios.&lt;/p>
+&lt;/div>
+&lt;div class="olist arabic">
+&lt;ol class="arabic">
+&lt;li>
+&lt;p>Se ha agregado un nuevo módulo llamado &lt;code>spring-boot-testcontainers&lt;/code> que se encarga de crear los beans basados en
+las implementation de Testcontainers para que puedan ser usados en nuestros tests y en modo desarrollo 👀&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@ServiceConnection&lt;/code> es la única anotación necesaria para acompañar a &lt;code>@Container&lt;/code> y dejar que Spring Boot realice
+la autoconfiguración de los beans.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Nuestro test ahora quedaría de la siguiente manera:&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">@Container
+@ServiceConnection // &lt;b class="conum">(1)&lt;/b>
+private static final PostgreSQLContainer&amp;lt;?&amp;gt; postgresContainer = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;)
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;);&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="colist arabic">
+&lt;ol>
+&lt;li>
+&lt;p>&lt;code>@ServiceConnection&lt;/code> hace el mapeo respectivo de las propiedades de Spring Boot con los valores que provee
+Testcontainers.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Pero eso no es todo, ahora podemos declarar &lt;code>PostgreSQLContainer&lt;/code> como &lt;code>@Bean&lt;/code> acompañado de &lt;code>@ServiceConnection&lt;/code> y
+Spring Boot se encargará de la autoconfiguración y se puede ejecutar la aplicación. Para esto puedes crear una clase con
+el método &lt;code>main&lt;/code> en &lt;code>src/test/java&lt;/code> y ejecutarlo.&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-java" data-lang="java">public class TestDemoApplication {
+public static void main(String[] args) {
+SpringApplication.from(DemoApplication::main).with(DemoConfiguration.class).run(args);
+}
+@TestConfiguration(proxyBeanMethods = false)
+static class DemoConfiguration {
+@Bean
+@ServiceConnection
+public PostgreSQLContainer&amp;lt;?&amp;gt; redisContainer() {
+PostgreSQLContainer&amp;lt;?&amp;gt; postgres = new PostgreSQLContainer&amp;lt;&amp;gt;(&amp;#34;postgres:12&amp;#34;)
+.withCopyFileToContainer(MountableFile.forClasspathResource(&amp;#34;schema.sql&amp;#34;), &amp;#34;/docker-entrypoint-initdb.d/schema.sql&amp;#34;);
+return postgres;
+}
+@Bean
+ApplicationRunner runner(JdbcTemplate jdbcTemplate) {
+return args -&amp;gt; {
+jdbcTemplate.queryForList(&amp;#34;SELECT name, lastname FROM users&amp;#34;)
+.forEach(System.out::println);
+};
+}
+}
+}&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Por motivos de pruebas, agrega la siguiente dependencia &lt;code>org.springframework.boot:spring-boot-starter-web&lt;/code> a tu &lt;code>pom.xml&lt;/code>
+o &lt;code>build.gradle&lt;/code>. La aplicación se ejecutará conectada a una base de datos postgres corriendo en un contenedor.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Ya puedes visitar &lt;a href="https://start.spring.io" target="_blank" rel="noopener">Spring Initializr&lt;/a> y generar un proyecto con Spring Boot 3.1.0-RC1.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Puedes revisar la documentación oficial de
+&lt;a href="https://docs.spring.io/spring-boot/docs/3.1.0-SNAPSHOT/reference/htmlsingle/#features.testing.testcontainers.service-connections" target="_blank" rel="noopener">Service Connections&lt;/a>
+y en
+&lt;a href="https://docs.spring.io/spring-boot/docs/3.1.0-SNAPSHOT/reference/htmlsingle/#features.testing.testcontainers.at-development-time" target="_blank" rel="noopener">Modo Desarrollo&lt;/a>
+con Testcontainers.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>Por cierto, ¿sabías de la existencia de los módulos que provee Testcontainers? Puedes revisarlos en el
+&lt;a href="https://testcontainers.com/modules/" target="_blank" rel="noopener">catálogo de módulos&lt;/a>.&lt;/p>
+&lt;/div></description></item><item><title>Spring Boot 3.1.0-M2: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</link><pubDate>Thu, 30 Mar 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-m2-service-connections/</guid><description>&lt;div class="paragraph">
 &lt;p>El pasado viernes 24 de Marzo se liberó la versión 3.1.0-M2 de Spring Boot, la cual añade nuevas anotaciones con la
 finalidad de reducir la configuración necesaria cuando usamos &lt;a href="https://testcontainers.com/" target="_blank" rel="noopener">Testcontainers&lt;/a>, resolviendo
 el issue &lt;a href="https://github.com/spring-projects/spring-boot/issues/34658" target="_blank" rel="noopener">spring-projects/spring-boot#34658&lt;/a>.&lt;/p>
