@@ -69,6 +69,21 @@
 &lt;li>
 &lt;p>&lt;a href="https://eddumelendez.dev/es/posts/spring-boot-3-1-rc1-service-connections/" target="_blank" rel="noopener">Spring Boot 3.1.0-RC1: Service Connections&lt;/a>&lt;/p>
 &lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://junit.org/junit5/docs/5.9.3/release-notes/" target="_blank" rel="noopener">JUnit 5.9.3&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/checkstyle/checkstyle/releases/tag/checkstyle-10.10.0" target="_blank" rel="noopener">Checkstyle 10.10.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/open-telemetry/opentelemetry-collector/releases/tag/v0.76.0" target="_blank" rel="noopener">OpenTelemetry Collector 0.76.0&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Final" target="_blank" rel="noopener">Quarkus 3.0.0.Final&lt;/a> liberado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/micronaut-projects/micronaut-test-resources/releases/tag/v2.0.0-M2" target="_blank" rel="noopener">Micronaut Test Resources 2.0.0-M2&lt;/a> liberado&lt;/p>
+&lt;/li>
 &lt;/ul>
 &lt;/div></description></item><item><title>Spring Boot 3.1.0-RC1: Service Connections</title><link>https://eddumelendez.dev/es/posts/spring-boot-3-1-rc1-service-connections/</link><pubDate>Tue, 25 Apr 2023 08:00:00 -0600</pubDate><guid>https://eddumelendez.dev/es/posts/spring-boot-3-1-rc1-service-connections/</guid><description>&lt;div class="paragraph">
 &lt;p>Spring Boot 3.1.0-RC1 ha sido liberado durante el fin de semana, en
